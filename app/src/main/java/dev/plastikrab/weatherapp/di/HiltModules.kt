@@ -2,7 +2,6 @@ package dev.plastikrab.weatherapp.di
 
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.plastikrab.weatherapp.data.api.WeatherRepositoryImpl

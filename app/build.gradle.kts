@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.dagger)
 
     alias(libs.plugins.secrets)
+
+    kotlin("plugin.serialization") version "1.9.23"
 }
 
 android {
@@ -84,4 +86,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.retrofit2.retrofit)
+    implementation(libs.kotlinx.serialization.json)
+
 }

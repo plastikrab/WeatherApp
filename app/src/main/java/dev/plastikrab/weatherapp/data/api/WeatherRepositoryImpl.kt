@@ -2,14 +2,17 @@ package dev.plastikrab.weatherapp.data.api
 
 import android.util.Log
 import dev.plastikrab.weatherapp.BuildConfig
+import dev.plastikrab.weatherapp.MOCK_JSON
 import dev.plastikrab.weatherapp.TAG
+import dev.plastikrab.weatherapp.data.api.dto.forecast.ForecastDto
+import dev.plastikrab.weatherapp.domain.entities.forecast.DomainForecast
 import dev.plastikrab.weatherapp.domain.entities.weatherData.DomainWeather
 import dev.plastikrab.weatherapp.domain.repositories.IWeatherRepository
 import dev.plastikrab.weatherapp.domain.states.ResponseState
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -52,11 +55,13 @@ class WeatherRepositoryImpl @Inject constructor(
             e.printStackTrace()
         }
     }
-}
 
-suspend fun getForecast(
-    lat: Double,
-    lon: Double
-): Flow<ResponseState<List<DomainWeather>>> {
-    TODO("Not yet implemented")
+    //Данные к сожалению мокнуты из за проблем с API OpenWeatherMap
+    override suspend fun getForecast(
+        lat: Double,
+        lon: Double
+    ): ResponseState<DomainForecast> {
+        val json = Json { ignoreUnknownKeys = true }
+        return ResponseState.Success(json.decodeFromString<ForecastDto>(MOCK_JSON).mapToDomain())
+    }
 }

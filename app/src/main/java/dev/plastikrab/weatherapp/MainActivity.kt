@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
-import dev.plastikrab.weatherapp.presentation.view.composables.screens.MainScreen
+import dev.plastikrab.weatherapp.presentation.view.composables.screens.NavigationScreen
 import dev.plastikrab.weatherapp.presentation.view.theme.WeatherAppTheme
 import dev.plastikrab.weatherapp.utils.PermissionsManager
 
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         permissionsManager.checkPermissions()
         setContent {
             WeatherAppTheme {
-                MainScreen()
+                NavigationScreen()
             }
         }
     }
